@@ -1,0 +1,196 @@
+.btn {
+  &.tasks__button-new {
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 40%;
+    background-color: #e6b368;
+
+    &:hover {
+      background: #f3b04b;
+    };
+  }
+}
+
+.tabs {
+  margin: 3em 0;
+  display: flex;
+  gap: 1em;
+
+  > input[type="radio"], select {
+    display: none;
+  }
+
+  input:checked + label {
+    background-color: #f5dfce;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.24);
+    opacity: 1;
+  }
+
+  label, button.tab {
+    padding: 1em;
+    cursor: pointer;
+    opacity: 0.8;
+
+    &:last-child {
+      color: green;
+      background-color: #fdfdfd;
+      border: 1px solid gray;
+      border-radius: 10px;
+      font-size: 1em;
+
+      > span {
+        font-size: 1.3em;
+      }
+    }
+
+    &:hover {
+      background-color: #f7efd9;
+    }
+  }
+}
+
+.tasks {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 3em;
+
+  &__content {
+    margin-bottom: 1em;
+
+    li.task {
+      list-style-type: none;
+      padding: 0.8em 2em;
+      transition: 0.2s;
+      cursor: pointer;
+      position: relative;
+      background-color: #fcf9f7;
+      margin-top: -1px;
+      border: 1px solid gray;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+       > .task__remove {
+        display: none;
+
+        &::before {
+          content: '✖';
+          color: #ff5858;
+          font-weight: 700;
+        }
+
+        &:hover::before {
+          color: red;
+        }
+      }
+
+      &.done {
+        background: #fceae0;
+        color: #330606;
+        
+        & span:not(.task__remove):not(.tooltip__text) {
+          text-decoration: line-through solid red 2px;
+        }
+
+        &::before {
+          content: '✔';
+          position: absolute;
+          color: green;
+          font-weight: 700;
+          left: 1.5%;
+        }
+      }
+
+      &:hover {
+        background-color: #fccbaa;
+
+        .task__tooltip {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        .task__remove {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.new-task {
+  &__field {
+    width: 80%;
+    margin: 0 auto 2em;
+    position: relative;
+  }
+
+  input[type=text], textarea {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    font-size: 1.2em;
+    border-radius: 4px;
+  }
+
+  .feedback {
+    position: absolute;
+    display: none;
+    color: red;
+
+    &.invalid {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .tabs {
+    margin: 1em 0;
+    width: 100%;
+
+    label {
+      display: none;
+    }
+
+    .select {
+      width: 100%;
+      padding: 1em 1.3em;
+      margin: 0.5em 0;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    button.tab {
+      padding: 0.6em;
+    }
+  }
+
+  .new-task {
+    h2 {
+      font-size: 1.3em;
+    }
+    &__field {
+      width: 100%;
+      margin: 0 auto 2em;
+    }
+  
+    input[type=text], textarea {
+      padding: 0.8em;
+      font-size: 1em;
+    }
+
+    .tasks__button-new {
+      width: 100%;
+    }
+
+    .feedback {
+      font-size: 0.9em;
+    }
+  }
+}

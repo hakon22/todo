@@ -1,0 +1,108 @@
+@font-face {
+  font-weight: 400;
+  font-family: Roboto;
+  src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: Roboto;
+  src: url('../fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: Roboto;
+  src: url('../fonts/Roboto-Bold.ttf');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 1em; // берём за основу размер браузера по умолчанию - 16px
+  line-height: 1.5;
+  color: $font;
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 100vw;
+  background-color: $background;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 71%; // дабы не указывать отступы, указываем сразу размер контейнера относительно ширины body и отцентровываем его по центру
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1.375em 3.31rem;
+  border: none;
+  color: $dark;
+  cursor: pointer;
+
+  @include font(1em, 700, 1);
+}
+
+.anim-show {
+	opacity: 0;
+	transition: 1s;
+	animation: show 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 1em;
+  }
+
+  .container {
+    width: 90%;
+  }
+
+  .btn {
+    padding: 1em 1.7rem;
+  }
+}

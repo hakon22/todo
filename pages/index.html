@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Выполненное тестовое задание"
+    />
+    <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/favicon-ios-57x57.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/favicon-ios-180x180.png">
+    <title>ToDo List</title>
+  </head>
+  <body>
+    <div class="modalBackground">
+      <div class="modalActive">
+        <div class="modalClose"></div>
+        <div class="modalWindow">
+          <form class="new-task">
+            <h2 class="text-center">Добавление новой задачи</h2>
+          <div class="new-task__field">
+            <label for="title" class="visually-hidden">Заголовок</label>
+            <input type="text" class="form-control" id="title" placeholder="Заголовок">
+            <div class="feedback anim-show">
+              Введите не менее трёх символов
+            </div>
+          </div>
+          <div class="new-task__field">
+            <label for="description" class="visually-hidden">Описание</label>
+            <textarea type="text" class="form-control" id="description" placeholder="Описание"></textarea>
+            <div class="feedback anim-show">
+              Введите не менее трёх символов
+            </div>
+          </div>
+          <div>
+            <button class="btn tasks__button-new" type="submit">Добавить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="container">
+      <div class="tabs">
+        <select id="tabs-mobile" class="select" name="tabs-mobile">
+          <option value="all">Все задачи</option>
+          <option value="active">Активные</option>
+          <option value="completed">Выполненные</option>
+        </select>
+        <input type="radio" id="all" name="tabGroup" class="tab" checked>
+        <label for="all">Все задачи</label>
+        <input type="radio" id="active" name="tabGroup" class="tab">
+        <label for="active">Активные</label>
+        <input type="radio" id="completed" name="tabGroup" class="tab">
+        <label for="completed">Выполненные</label>
+        <button type="button" class="tab"><span>+</span> Добавить</button>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="tasks">
+        <ul class="tasks__content"></ul>
+      </div>
+      <button type="button" class="uppen-button anim-show" title="Наверх">Наверх</button> 
+    </main>
+  </body>
+</html>
