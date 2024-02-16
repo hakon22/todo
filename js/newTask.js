@@ -1,6 +1,6 @@
-export default (title, description, id) => {
+export default (title, description, id, isDone = false) => {
   const li = document.createElement('li');
-  li.classList.add('task', 'tooltip');
+  li.classList.add('task', 'tooltip', isDone ? 'done' : null);
   li.setAttribute('id', id);
   [0, 1, 2].forEach((number) => {
     const span = document.createElement('span');

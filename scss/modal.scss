@@ -21,6 +21,7 @@ $modalBgWindow: #fcdec1;
     width: 50%;
     max-height: 90vh;
     border-radius: 20px;
+    border: 1px solid grey;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -60%);
@@ -55,6 +56,10 @@ $modalBgWindow: #fcdec1;
 @media (max-width: 768px) {
   .modalBackground .modalActive {
     width: 90%;
+    
+    h2 {
+        margin-bottom: 1.5em;
+    }
   }
 }
 

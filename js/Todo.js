@@ -3,8 +3,15 @@ class Todo {
     this.data = data;
   }
 
-  getAll() {
-    return this.data;
+  getAll(filter = 'all') {
+    if (filter === 'all') {
+      return this.data;
+    }
+    return this.getOnlyFor(filter);
+  }
+  
+  getOnlyFor(isDone) {
+    return this.data.filter((task) => isDone ? task.isDone : !task.isDone);
   }
 
   getTask(id) {
@@ -20,6 +27,18 @@ class Todo {
 
   removeTask(id) {
     const newTasks = this.getAll().filter((task) => task.id !== Number(id));
+    this.data = newTasks;
+    return window.localStorage.setItem('myTasks', JSON.stringify(newTasks));
+  }
+  
+  updateTask(id) {
+      const newTasks = this.getAll().map((task) => {
+          if (task.id === Number(id)) {
+              task.isDone = !task.isDone;
+              return task;
+          }
+          return task;
+      });
     this.data = newTasks;
     return window.localStorage.setItem('myTasks', JSON.stringify(newTasks));
   }

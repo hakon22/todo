@@ -15,6 +15,7 @@
 .tabs {
   margin: 3em 0;
   display: flex;
+  align-items: center;
   gap: 1em;
 
   > input[type="radio"], select {
@@ -39,7 +40,7 @@
       border-radius: 10px;
       font-size: 1em;
 
-      > span {
+      > span:first-child {
         font-size: 1.3em;
       }
     }
@@ -149,7 +150,7 @@
 
 @media (max-width: 767px) {
   .tabs {
-    margin: 1em 0;
+    margin: 2em 0;
     width: 100%;
 
     label {
@@ -159,15 +160,33 @@
     .select {
       width: 100%;
       padding: 1em 1.3em;
-      margin: 0.5em 0;
+      background-color: #f7efd9;
       display: block;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1em;
+      
+      /* скроет иконку стрелки в IE */
+      select::-ms-expand {
+        display: none;
+      }
     }
 
     button.tab {
-      padding: 0.6em;
+      padding: 0.8em 1.2em;
+      
+      span:last-child {
+          display: none;
+      }
+    }
+  }
+  
+  .tasks {
+    li.task {
+      &.done::before {
+        left: 4%;
+        top: 25%;
+      }
     }
   }
 
