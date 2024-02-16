@@ -1,5 +1,6 @@
-$modalFont: #e2e2e2;
-$modalBgWindow: #fcdec1;
+$modalFont: #d5d3d0ba;
+$modalBgWindow: #f8fdff;
+$border: #a5c3ce;
 
 .modalBackground {
   display: none;
@@ -21,7 +22,6 @@ $modalBgWindow: #fcdec1;
     width: 50%;
     max-height: 90vh;
     border-radius: 20px;
-    border: 1px solid grey;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -60%);
@@ -44,10 +44,10 @@ $modalBgWindow: #fcdec1;
       background-image: url('../images/modal/close.svg');
       background-repeat: no-repeat;
       background-size: cover;
-      right: 17px;
-      top: 17px;
-      width: 17px;
-      height: 17px;
+      right: 19px;
+      top: 19px;
+      width: 15px;
+      height: 15px;
       cursor: pointer;
     }
   }

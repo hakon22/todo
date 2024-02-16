@@ -1,13 +1,13 @@
 .btn {
   &.tasks__button-new {
     display: block;
-    margin: 0 auto;
+    margin: 2em auto 1em;
     border-radius: 20px;
     width: 40%;
-    background-color: #e6b368;
+    background-color: #c8eae5;
 
     &:hover {
-      background: #f3b04b;
+      background: #8fcec4;
     };
   }
 }
@@ -18,12 +18,12 @@
   align-items: center;
   gap: 1em;
 
-  > input[type="radio"], select {
+  > input[type="radio"], &__mobile {
     display: none;
   }
 
   input:checked + label {
-    background-color: #f5dfce;
+    background-color: $background-tabs;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.24);
     opacity: 1;
   }
@@ -32,21 +32,24 @@
     padding: 1em;
     cursor: pointer;
     opacity: 0.8;
+    border-radius: 10px;
 
     &:last-child {
       color: green;
-      background-color: #fdfdfd;
-      border: 1px solid gray;
+      background-color: $field;
+      border: 1px solid $border;
       border-radius: 10px;
       font-size: 1em;
 
-      > span:first-child {
-        font-size: 1.3em;
+      > span:first-child::before {
+        content: url('../images/plus.svg');
+        display: inline-block;
+        vertical-align: middle;
       }
     }
 
     &:hover {
-      background-color: #f7efd9;
+      background-color: $hover-list;
     }
   }
 }
@@ -59,7 +62,12 @@
   margin-bottom: 3em;
 
   &__content {
-    margin-bottom: 1em;
+    border: 1px solid $border-list;
+    border-radius: 10px;
+
+    &:empty {
+      border: unset;
+    }
 
     li.task {
       list-style-type: none;
@@ -67,33 +75,59 @@
       transition: 0.2s;
       cursor: pointer;
       position: relative;
-      background-color: #fcf9f7;
-      margin-top: -1px;
-      border: 1px solid gray;
+      background-color: $list-background;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-radius: 10px;
+      
+      &:first-child:not(:last-child) {
+        border-radius: 10px 10px 0 0;
+        border-bottom: 1px solid $border-list;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        border-bottom: 1px solid $border-list;
+        border-radius: unset;
+      }
+
+      &:last-child:not(:nth-child(1)) {
+        border-bottom: unset;
+        border-radius: 0 0 10px 10px;
+      }
 
        > .task__remove {
         display: none;
 
         &::before {
-          content: '✖';
-          color: #ff5858;
-          font-weight: 700;
+          content: url('../images/remove.svg');
+          opacity: 0.5;
+          display: inherit;
         }
 
         &:hover::before {
-          color: red;
+          opacity: 1;
         }
       }
 
+      &:not(.done)::before {
+        content: '✔';
+        position: absolute;
+        color: green;
+        font-weight: 700;
+        left: 2%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        opacity: 0.1;
+      }
+
       &.done {
-        background: #fceae0;
-        color: #330606;
+        color: $font-opacity;
         
         & span:not(.task__remove):not(.tooltip__text) {
-          text-decoration: line-through solid red 2px;
+          text-decoration: line-through solid $font 2px;
         }
 
         &::before {
@@ -101,12 +135,16 @@
           position: absolute;
           color: green;
           font-weight: 700;
-          left: 1.5%;
+          left: 2%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
         }
       }
 
       &:hover {
-        background-color: #fccbaa;
+        background-color: $hover-list;
 
         .task__tooltip {
           visibility: visible;
@@ -132,9 +170,13 @@
   input[type=text], textarea {
     width: 100%;
     padding: 0.8em;
-    border: 1px solid #ccc;
+    border: 1px solid $border;
     font-size: 1.2em;
-    border-radius: 4px;
+    border-radius: 10px;
+  }
+
+  textarea {
+    font-size: 1.3em !important;
   }
 
   .feedback {
@@ -157,23 +199,44 @@
       display: none;
     }
 
-    .select {
-      width: 100%;
-      padding: 1em 1.3em;
-      background-color: #f7efd9;
+    &__mobile {
       display: block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1em;
+      width: 100%;
+      position: relative;
+
+      .arrow {
+        position: absolute;
+        border: solid black;
+        opacity: 0.5;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        right: 10%;
+        top: 40%;
+      }
       
-      /* скроет иконку стрелки в IE */
-      select::-ms-expand {
-        display: none;
+      .select {
+        width: 100%;
+        padding: 1em 1.3em;
+        background-color: $field;
+        border: 1px solid $border;
+        border-radius: 10px;
+        font-size: 1em;
+        display: block;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &::-ms-expand {
+          display: none;
+        }
       }
     }
 
     button.tab {
-      padding: 0.8em 1.2em;
+      padding: 0.9em 1.2em;
       
       span:last-child {
           display: none;
@@ -183,9 +246,16 @@
   
   .tasks {
     li.task {
+      &:not(.done)::before {
+        left: 6%;
+      }
       &.done::before {
-        left: 4%;
-        top: 25%;
+        left: 6%;
+      }
+
+      > .task__remove {
+        display: flex;
+        align-items: center;
       }
     }
   }

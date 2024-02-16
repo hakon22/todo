@@ -44,18 +44,21 @@
     <header class="container">
         <h1>Планировщик задач</h1>
       <div class="tabs">
-        <select id="tabs-mobile" class="select" name="tabs-mobile">
-          <option value="all" selected>Все задачи</option>
-          <option value="active">Активные</option>
-          <option value="completed">Выполненные</option>
-        </select>
+        <div class="tabs__mobile">
+          <select id="tabs-mobile" class="select" name="tabs-mobile">
+            <option value="all" selected>Все задачи</option>
+            <option value="active">Активные</option>
+            <option value="completed">Выполненные</option>
+          </select>
+          <span class="arrow"></span>
+        </div>
         <input type="radio" id="all" name="tabGroup" class="tab" checked>
         <label for="all">Все задачи</label>
         <input type="radio" id="active" name="tabGroup" class="tab">
         <label for="active">Активные</label>
         <input type="radio" id="completed" name="tabGroup" class="tab">
         <label for="completed">Выполненные</label>
-        <button type="button" class="tab"><span>+</span><span> Добавить</span></button>
+        <button type="button" class="tab"><span class="plus"></span><span> Добавить</span></button>
         </div>
       </div>
     </header>
