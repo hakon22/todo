@@ -21,28 +21,29 @@
         <div class="modalWindow">
           <form class="new-task">
             <h2 class="text-center">Добавление новой задачи</h2>
-          <div class="new-task__field">
-            <label for="title" class="visually-hidden">Заголовок</label>
-            <input type="text" class="form-control" id="title" placeholder="Заголовок">
-            <div class="feedback anim-show">
-              Введите не менее трёх символов
+            <div class="new-task__field">
+              <label for="title" class="visually-hidden">Заголовок</label>
+              <input type="text" class="form-control" id="title" placeholder="Заголовок">
+              <div class="feedback anim-show">
+                Введите не менее трёх символов
+              </div>
             </div>
-          </div>
-          <div class="new-task__field">
-            <label for="description" class="visually-hidden">Описание</label>
-            <textarea type="text" class="form-control" id="description" placeholder="Описание"></textarea>
-            <div class="feedback anim-show">
-              Введите не менее трёх символов
+            <div class="new-task__field">
+              <label for="description" class="visually-hidden">Описание</label>
+              <textarea type="text" class="form-control" id="description" placeholder="Описание"></textarea>
+              <div class="feedback anim-show">
+                Введите не менее трёх символов
+              </div>
             </div>
-          </div>
-          <div>
-            <button class="btn tasks__button-new" type="submit">Добавить</button>
-          </div>
+            <div>
+              <button class="btn tasks__button-new" type="submit">Добавить</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <header class="container">
-        <h1>Планировщик задач</h1>
+      <h1>Планировщик задач</h1>
       <div class="tabs">
         <div class="tabs__mobile">
           <select id="tabs-mobile" class="select" name="tabs-mobile">
@@ -59,7 +60,6 @@
         <input type="radio" id="completed" name="tabGroup" class="tab">
         <label for="completed">Выполненные</label>
         <button type="button" class="tab"><span class="plus"></span><span> Добавить</span></button>
-        </div>
       </div>
     </header>
     <main class="container">

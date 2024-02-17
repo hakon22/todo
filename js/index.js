@@ -37,30 +37,35 @@ const dataView = (filter) => Todo.getAll(filter).forEach(({
   li.querySelector('.task__remove').addEventListener('click', onRemove);
 });
 
-const changeFlag = (id = 'active') => {
-  if (window.screen.width > 767) { // нативная валидация на isMobile
-    // на ПК при добавлении нового таска ставим "ckecked" на радиокнопку активных задач
-    document.querySelector('input[checked]').removeAttribute('checked');
-    const activeButton = document.querySelector(`input[id=${id}]`);
-    activeButton.setAttribute('checked', true);
+const changeTabToActive = () => {
+  // нативная валидация на isMobile
+  if (window.screen.width > 767) {
+    // на ПК при добавлении нового таска ставим "checked" на радиокнопку активных задач
+    const activeTab = document.querySelector('.tab:checked');
+    if (activeTab !== 'active') {
+      document.querySelector('.tab[id=active]').checked = true;
+    }
   } else {
-    // на телефонах при добавлении нового таска ставим "selected" на select
-    select.querySelector('option[selected]').removeAttribute('selected');
-    select.querySelector(`option[value=${id}]`).setAttribute('selected', true);
-    console.log(select.querySelector(`option[value=${id}]`));
+    // на телефонах при добавлении нового таска переключаем вкладку на "active"
+    const select = document.querySelector('.select');
+    if (select.value !== 'active') {
+      select.value = 'active';
+    }
   }
-  const isDone = id === 'completed';
   tasksContainer.innerHTML = '';
-  // отображаем только те элементы, которые подходят под текущий "фильтр"
-  dataView(id === 'all' ? 'all' : isDone);
+  // отображаем активные задачи
+  dataView(false);
 };
 
-// обрабатываем только переключения вкладок самостоятельно
+// обрабатываем переключения вкладок (id - на ПК, value - на телефонах)
 const onSelect = (e) => {
   const { id, value } = e.target;
-  if (e.isTrusted) {
-    changeFlag(window.screen.width > 767 ? id : value);
-  }
+
+  const isDone = id === 'completed' || value === 'completed';
+  const isAll = id === 'all' || value === 'all';
+  // очищаем контейнер и отображаем только те элементы, которые подходят под текущий "фильтр"
+  tasksContainer.innerHTML = '';
+  dataView(isAll ? 'all' : isDone);
 };
 
 // добавляем новый таск
@@ -83,11 +88,11 @@ const onSubmit = (e) => {
     return acc;
   }, {});
 
-  if (title && description) { // если прошли валидацию
-    changeFlag(); // меняем активную вкладку на "active"
-    // вытаскиваем свежий контейнер с задачами
-    const tasksContainer = document.querySelector('.tasks__content');
-    // добавляем его в "хранилище" и получаем его id
+  // если прошли валидацию
+  if (title && description) {
+    // меняем активную вкладку на "active"
+    changeTabToActive();
+    // добавляем таск "хранилище" и получаем его id
     const id = Todo.addTask({ title, description, isDone: false });
     // собираем <li> с необходимой информацией и атрибутами
     const li = newTask(title, description, id);
