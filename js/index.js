@@ -41,8 +41,8 @@ const changeTabToActive = () => {
   // нативная валидация на isMobile
   if (window.screen.width > 767) {
     // на ПК при добавлении нового таска ставим "checked" на радиокнопку активных задач
-    const activeTab = document.querySelector('.tab:checked');
-    if (activeTab !== 'active') {
+    const currentTabId = document.querySelector('.tab:checked').id;
+    if (currentTabId !== 'active') {
       document.querySelector('.tab[id=active]').checked = true;
     }
   } else {
